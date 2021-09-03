@@ -5,4 +5,5 @@ module com.logicommerce.utilities {
 	
 	exports com.logicommerce.utilities;
 	exports com.logicommerce.utilities.builders;
+	exports com.logicommerce.utilities.annotations;
 }
