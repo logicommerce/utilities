@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.List;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -62,9 +63,27 @@ public class JsonMapper<T> {
 		}
 		return null;
 	}
+	
+	public void setAcceptCaseInsentiveEnums(boolean enable) {
+		if (enable) {
+			mapper.enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
+		}
+		else {
+			mapper.disable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
+		}
+	}
+	
+	public void setUnwrapRoot(boolean enable) {
+		if (enable) {
+			mapper.enable(DeserializationFeature.UNWRAP_ROOT_VALUE);
+		}
+		else {
+			mapper.disable(DeserializationFeature.UNWRAP_ROOT_VALUE);
+		}
+	}
 
 	private void initMapper() {
-		mapper = new ObjectMapper();
+		mapper = new ObjectMapper();		
 		mapper.disable(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES);
 		mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		mapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
