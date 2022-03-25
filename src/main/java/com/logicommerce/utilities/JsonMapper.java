@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.List;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -62,9 +63,21 @@ public class JsonMapper<T> {
 		}
 		return null;
 	}
+	
+	public void configure(SerializationFeature featue, boolean value) {
+		mapper.configure(featue, value);
+	}
+	
+	public void configure(DeserializationFeature featue, boolean value) {
+		mapper.configure(featue, value);
+	}
+	
+	public void configure(MapperFeature featue, boolean value) {
+		mapper.configure(featue, value);
+	}
 
 	private void initMapper() {
-		mapper = new ObjectMapper();
+		mapper = new ObjectMapper();		
 		mapper.disable(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES);
 		mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		mapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
