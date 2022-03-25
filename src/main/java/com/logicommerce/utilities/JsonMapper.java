@@ -64,16 +64,22 @@ public class JsonMapper<T> {
 		return null;
 	}
 	
-	public void configure(SerializationFeature featue, boolean value) {
-		mapper.configure(featue, value);
+	public void setAcceptCaseInsentiveEnums(boolean enable) {
+		if (enable) {
+			mapper.enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
+		}
+		else {
+			mapper.disable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
+		}
 	}
 	
-	public void configure(DeserializationFeature featue, boolean value) {
-		mapper.configure(featue, value);
-	}
-	
-	public void configure(MapperFeature featue, boolean value) {
-		mapper.configure(featue, value);
+	public void setUnwrapRoot(boolean enable) {
+		if (enable) {
+			mapper.enable(DeserializationFeature.UNWRAP_ROOT_VALUE);
+		}
+		else {
+			mapper.disable(DeserializationFeature.UNWRAP_ROOT_VALUE);
+		}
 	}
 
 	private void initMapper() {
