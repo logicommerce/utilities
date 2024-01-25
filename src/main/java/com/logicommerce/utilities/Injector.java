@@ -39,7 +39,7 @@ public abstract class Injector {
 					}
 				}
 				instance = clazz.getConstructor().newInstance();
-				if(isRequestScope(clazz)) {
+				if (isRequestScope(clazz)) {
 					addInstance(instance);
 				}
 				
@@ -67,11 +67,6 @@ public abstract class Injector {
 
 	protected abstract boolean hasPostConstruct(Method method);
 
-	public Injector debug() {
-		this.debugMode = true;
-		return this;
-	}
-
 	private Injector addImplementation(Class<?> iFace, Class<?> impl) {
 		interfaceImplementations.put(iFace, impl);
 		return this;
@@ -93,13 +88,13 @@ public abstract class Injector {
 		return this;
 	}
 
+	public Injector addInstance(Object object) {
+		return addInstance(object.getClass(), object);
+	}
+
 	public Injector addProperty(String name, Object object) {
 		properties.put(name, object);
 		return this;
-	}
-
-	public Injector addInstance(Object object) {
-		return addInstance(object.getClass(), object);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -114,7 +109,7 @@ public abstract class Injector {
 			for (Field field : clazz.getDeclaredFields()) {
 				if (properties.containsKey(field.getName())) {
 					setField(field, instance, properties.get(field.getName()));
-				}else if (isInjectable(field)) {
+				} else if (isInjectable(field)) {
 					setField(field, instance, getInstance(field.getType()));
 				}
 			}
@@ -130,13 +125,19 @@ public abstract class Injector {
 		boolean isAccessible = isAccessible(field, instance);
 		field.setAccessible(true);
 		field.set(instance, object);
-		if (!isAccessible)
+		if (!isAccessible) {
 			field.setAccessible(false);
+		}
 	}
 
 	private boolean isAccessible(Field field, Object object) {
 		int modifiers = field.getModifiers();
 		return !Modifier.isStatic(modifiers) && field.canAccess(object);
+	}
+
+	public Injector debug() {
+		this.debugMode = true;
+		return this;
 	}
 
 	private void debug(String message) {

@@ -52,12 +52,6 @@ public class JsonBuilder extends JsonValueBuilder {
 		return this;
 	}
 
-	public JsonBuilder addNull(String name) {
-		validateName(name);
-		putValueMap(new JsonStringBuilder(name), new JsonNullBuilder());
-		return this;
-	}
-
 	public JsonBuilder add(String name, JsonBuilder value) {
 		validateName(name);
 		validateValue(value);
@@ -69,6 +63,12 @@ public class JsonBuilder extends JsonValueBuilder {
 		validateName(name);
 		validateValue(value);
 		putValueMap(new JsonStringBuilder(name), value);
+		return this;
+	}
+
+	public JsonBuilder addNull(String name) {
+		validateName(name);
+		putValueMap(new JsonStringBuilder(name), new JsonNullBuilder());
 		return this;
 	}
 

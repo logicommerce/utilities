@@ -10,33 +10,37 @@ import java.util.Date;
 import java.util.List;
 
 public class LocalDateUtil {
-	
+
 	private static List<String> possiblePatterns = Arrays.asList("yyyy-MM-dd", "yyyyMMdd", "yyyy/MM/dd");
 
 	private LocalDateUtil() {}
 
 	public static String toIsoLocalDate(LocalDate localDate) {
-		if (localDate == null)
+		if (localDate == null) {
 			return "";
+		}
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE;
 		return dateTimeFormatter.format(localDate);
 	}
 
 	public static LocalDate toLocalDate(String value) {
-		if(value == null)
+		if (value == null) {
 			return null;
-		DateTimeParseException exception=null;
+		}
+		DateTimeParseException exception = null;
 		for (String format : possiblePatterns) {
 			try {
 				LocalDate localDate = LocalDate.parse(value, DateTimeFormatter.ofPattern(format));
-				if (localDate != null)
+				if (localDate != null) {
 					return localDate;
+				}
 			} catch (DateTimeParseException ex) {
 				exception = ex;
 			}
 		}
-		if(exception!=null)
+		if (exception != null) {
 			throw exception;
+		}
 		return null;
 	}
 
@@ -46,9 +50,9 @@ public class LocalDateUtil {
 
 	public static LocalDate toLocalDate(Instant instant) {
 		return instant.atOffset(ZoneOffset.UTC)
-				.toLocalDate();
+			.toLocalDate();
 	}
-	
+
 	public static List<String> getPossiblePatterns() {
 		return possiblePatterns;
 	}

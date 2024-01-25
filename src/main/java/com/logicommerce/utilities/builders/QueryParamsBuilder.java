@@ -4,8 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class QueryParamsBuilder {
@@ -23,8 +23,9 @@ public class QueryParamsBuilder {
 	}
 
 	public QueryParamsBuilder add(String name, Object value) {
-		if (name != null && value != null)
+		if (name != null && value != null) {
 			queryParams.put(name, value.toString());
+		}
 		return this;
 	}
 

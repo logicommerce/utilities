@@ -17,13 +17,15 @@ public abstract class JsonValueBuilder {
 	protected static final String QUOTE = "\"";
 
 	protected void validateValue(Object value) {
-		if (value == null)
+		if (value == null) {
 			throw new NullPointerException("Value can not be null");
+		}
 	}
 
 	protected void validateName(String name) {
-		if (name == null)
+		if (name == null) {
 			throw new NullPointerException("Name can not be null");
+		}
 	}
 
 	@Override

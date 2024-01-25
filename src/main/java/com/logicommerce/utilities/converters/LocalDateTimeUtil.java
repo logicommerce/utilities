@@ -35,8 +35,9 @@ public class LocalDateTimeUtil {
 		} catch (DateTimeParseException ex) { // pass
 		}
 		LocalDate localDate = LocalDateUtil.toLocalDate(value);
-		if (localDate != null)
+		if (localDate != null) {
 			return LocalDateTime.of(localDate, LocalTime.of(0, 0));
+		}
 		return null;
 	}
 
@@ -59,20 +60,23 @@ public class LocalDateTimeUtil {
 
 
 	public static LocalDateTime parse8601(String value) {
-		if (value == null || value.isEmpty())
+		if (value == null || value.isEmpty()) {
 			return null;
+		}
 		return LocalDateTime.parse(value, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
 	}
 
 	public static String toIso8601(LocalDateTime localDateTime) {
-		if (localDateTime == null)
+		if (localDateTime == null) {
 			return "";
+		}
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
 		LocalDateTime dateTime = localDateTime.truncatedTo(ChronoUnit.SECONDS);
-		if (dateTime.isSupported(ChronoField.OFFSET_SECONDS))
+		if (dateTime.isSupported(ChronoField.OFFSET_SECONDS)) {
 			// TODO Review TimeZone general settings when save objects with dates
 			return dateTimeFormatter.format(dateTime);
-		else
+		} else {
 			return dateTimeFormatter.format(dateTime.atZone(ZoneOffset.UTC));
+		}
 	}
 }
