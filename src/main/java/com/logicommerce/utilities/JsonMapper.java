@@ -67,8 +67,7 @@ public class JsonMapper<T> {
 	public void setAcceptCaseInsentiveEnums(boolean enable) {
 		if (enable) {
 			mapper.enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
-		}
-		else {
+		} else {
 			mapper.disable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
 		}
 	}
@@ -76,8 +75,7 @@ public class JsonMapper<T> {
 	public void setUnwrapRoot(boolean enable) {
 		if (enable) {
 			mapper.enable(DeserializationFeature.UNWRAP_ROOT_VALUE);
-		}
-		else {
+		} else {
 			mapper.disable(DeserializationFeature.UNWRAP_ROOT_VALUE);
 		}
 	}

@@ -31,6 +31,7 @@ public class JsonArrayBuilder extends JsonValueBuilder {
 		values.add(new JsonNumberBuilder(value));
 		return this;
 	}
+
 	public JsonArrayBuilder add(int value) {
 		values.add(new JsonNumberBuilder(value));
 		return this;

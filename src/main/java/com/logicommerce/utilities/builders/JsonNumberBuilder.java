@@ -18,11 +18,12 @@ public class JsonNumberBuilder extends JsonValueBuilder {
 	
 	@Override
 	public String toString() {
-		if (intValue != null)
+		if (intValue != null) {
 			return intValue.toString();
-		if (dobValue != null)
+		}
+		if (dobValue != null) {
 			return dobValue.toString();
-		
+		}
 		return null;
 	}
 

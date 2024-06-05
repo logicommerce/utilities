@@ -11,7 +11,6 @@ public class QueryParamsBuilderTest {
 	@Test
 	public void testBuildEmpty() {
 		String result = new QueryParamsBuilder().toString();
-
 		assertEquals(result, "");
 	}
 
@@ -21,7 +20,6 @@ public class QueryParamsBuilderTest {
 				.add(null, "value")
 				.add("q", null)
 				.toString();
-
 		assertEquals(result, "");
 	}
 
@@ -35,13 +33,13 @@ public class QueryParamsBuilderTest {
 
 	@Test
 	public void testParams() throws UnsupportedEncodingException {
-		String specialCharacters = "1234567890'¡ qwertyuiopasdfghjklñçzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM,.-ª!\"·$%&/()=?¿<>€\\|@#~½¬{[]}àèìòù"; 
+		String specialCharacters = "1234567890'¡ qwertyuiopasdfghjklñçzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM,"
+			+ ".-ª!\"·$%&/()=?¿<>€\\|@#~½¬{[]}àèìòù"; 
 		String result = new QueryParamsBuilder()
 				.add("q", "theString")
 				.add("page", 1)
 				.add("sc", specialCharacters)
 				.toString();
-
 		String expected = "q=theString&page=1&sc=" + URLEncoder.encode(specialCharacters, "UTF-8");
 		assertEquals(result, expected);
 	}
@@ -54,7 +52,6 @@ public class QueryParamsBuilderTest {
 				.add("page", 2)
 				.add("page", 3)
 				.toString();
-
 		String expected = "q=theString&page=3";
 		assertEquals(result, expected);
 	}
