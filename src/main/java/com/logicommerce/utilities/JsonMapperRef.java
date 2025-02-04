@@ -2,15 +2,16 @@ package com.logicommerce.utilities;
 
 import java.io.IOException;
 import java.io.InputStream;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class JsonMapper<T> extends JsonMapperBase<T> {
+public class JsonMapperRef<T> extends JsonMapperBase<T> {
 
-	private Class<T> resourceClass;
+	private TypeReference<T> typeReference;
 
-	public JsonMapper(Class<T> resourceClass) {
+	public JsonMapperRef(TypeReference<T> typeReference) {
 		super();
-		this.resourceClass = resourceClass;
+		this.typeReference = typeReference;
 	}
 
 	@Override
@@ -18,7 +19,7 @@ public class JsonMapper<T> extends JsonMapperBase<T> {
 		if (jsonStream != null) {
 			try {
 				ObjectMapper mapper = mapperBuilder.build();
-				return mapper.readValue(jsonStream, resourceClass);
+				return mapper.readValue(jsonStream, typeReference);
 			} catch (IOException exception) {
 				throw new JsonConverterException(exception);
 			}
@@ -31,12 +32,11 @@ public class JsonMapper<T> extends JsonMapperBase<T> {
 		if (json != null && !json.isBlank()) {
 			try {
 				ObjectMapper mapper = mapperBuilder.build();
-				return mapper.readValue(json, resourceClass);
+				return mapper.readValue(json, typeReference);
 			} catch (IOException exception) {
 				throw new JsonConverterException(exception);
 			}
 		}
 		return null;
 	}
-	
 }
