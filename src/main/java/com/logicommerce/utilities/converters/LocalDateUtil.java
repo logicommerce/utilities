@@ -11,7 +11,8 @@ import java.util.List;
 
 public class LocalDateUtil {
 
-	private static List<String> possiblePatterns = Arrays.asList("yyyy-MM-dd", "yyyyMMdd", "yyyy/MM/dd");
+	private static List<String> possiblePatterns = Arrays.asList("yyyy-MM-dd", "yyyyMMdd", "yyyy/MM/dd",
+			"dd-MM-yy", "dd/MM/yy");
 
 	private LocalDateUtil() {}
 
