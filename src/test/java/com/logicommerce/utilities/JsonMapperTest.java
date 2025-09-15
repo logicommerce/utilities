@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 class JsonMapperTest {
 
@@ -13,9 +14,10 @@ class JsonMapperTest {
 	private static final double PRICE = 1.23;
 	private static final LocalDateTime CREATION_DATE = LocalDateTime.now().minusMinutes(10);
 	private static final String YESTERDAY = "2021-01-25T12:34:56.789123456Z";
+	private static final String DATA_VALUE = "data value";
 
 	@Test
-	public void testToJson() throws JsonConverterException {
+	void testToJson() throws JsonConverterException {
 		final JsonMapper<DataFixture> mapper = new JsonMapper<>(DataFixture.class);
 		DataFixture data = new DataFixture(NAME, DESCRIPTION, QUANTITY, PRICE, CREATION_DATE);
 		String json = mapper.toJson(data);
@@ -30,7 +32,7 @@ class JsonMapperTest {
 	}
 
 	@Test
-	public void testFromJson() throws JsonConverterException {
+	void testFromJson() throws JsonConverterException {
 		final JsonMapper<DataFixture> mapper = new JsonMapper<>(DataFixture.class);
 		String json = "{\"name\":\"" + NAME
 			+ "\",\"description\":\"" + DESCRIPTION
@@ -46,4 +48,25 @@ class JsonMapperTest {
 		assertNotNull(data.getCreationDate());
 	}
 
+	@Test
+	void testFromJsonRef() throws JsonConverterException {
+		final TypeReference<DataFixtureRef<DataRef>> type = new TypeReference<>() {};
+		final JsonMapperRef<DataFixtureRef<DataRef>> mapper = new JsonMapperRef<>(type);
+		String json = "{\"name\":\"" + NAME
+			+ "\",\"description\":\"" + DESCRIPTION
+			+ "\",\"quantity\": " + QUANTITY
+			+ ",\"price\":" + PRICE
+			+ ",\"creationDate\":\"" + YESTERDAY + "\""
+			+ ",\"data\":{ \"value\":\""+ DATA_VALUE + "\"}}";
+		System.out.println(json);
+		DataFixtureRef<DataRef> data = mapper.fromJson(json);
+		assertNotNull(data);
+		DataRef dataRef = data.getData();
+		assertEquals(DATA_VALUE, dataRef.getValue());
+		assertEquals(NAME, data.getName());
+		assertEquals(DESCRIPTION, data.getDescription());
+		assertEquals(QUANTITY, data.getQuantity());
+		assertEquals(PRICE, data.getPrice());
+		assertNotNull(data.getCreationDate());
+	}
 }
