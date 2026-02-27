@@ -5,11 +5,11 @@
 
 	<groupId>com.logicommerce</groupId>
 	<artifactId>utilities</artifactId>
-	<version>1.2.1</version>
+	<version>1.2.2</version>
 	<packaging>jar</packaging>
 
 	<name>${project.groupId}:${project.artifactId}</name>
-	<description>Utilities for Logicommerce and Logicommerce Plugins.</description>
+	<description>Utilities for LogiCommerce and LogiCommerce Plugins.</description>
 	<url>https://www.logicommerce.com</url>
 
 	<licenses>
@@ -22,9 +22,9 @@
 
 	<developers>
 		<developer>
-			<name>Francesc d'Assís Requesens i Roca</name>
-			<email>francesc.requesens@logicommerce.com</email>
-			<organization>Logicommerce</organization>
+			<name>Pol Rivero Sallent</name>
+			<email>pol.rivero@logicommerce.com</email>
+			<organization>LogiCommerce</organization>
 			<organizationUrl>https://www.logicommerce.com</organizationUrl>
 		</developer>
 	</developers>
@@ -46,8 +46,7 @@
 		<maven-gpg-plugin.version>3.2.4</maven-gpg-plugin.version>
 		<maven-source-plugin.version>3.3.1</maven-source-plugin.version>
 		<maven-javadoc-plugin.version>3.6.3</maven-javadoc-plugin.version>
-		<nexus-staging-maven-plugin.version>1.7.0</nexus-staging-maven-plugin.version>
-		<central-publishing-maven-plugin>0.8.0</central-publishing-maven-plugin>
+		<central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -55,7 +54,7 @@
 		<jackson.version>2.17.2</jackson.version>
 		<bouncycastle.version>1.78.1</bouncycastle.version>
 
-		<junit.jupiter.version>5.10.1</junit.jupiter.version>
+		<junit-jupiter.version>5.10.1</junit-jupiter.version>
 	</properties>
 
 	<dependencies>
@@ -74,7 +73,7 @@
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
-			<version>${junit.jupiter.version}</version>
+			<version>${junit-jupiter.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -139,7 +138,7 @@
 				    <plugin>
 						<groupId>org.sonatype.central</groupId>
 				      	<artifactId>central-publishing-maven-plugin</artifactId>
-				      	<version>${central-publishing-maven-plugin}</version>
+				      	<version>${central-publishing-maven-plugin.version}</version>
 				      	<extensions>true</extensions>
 				      	<configuration>
 				        	<publishingServerId>central</publishingServerId>

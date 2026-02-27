@@ -1,0 +1,55 @@
+{
+    "maven-compiler-plugin.version": {
+        "groupId": "org.apache.maven.plugins",
+        "artifactId": "maven-compiler-plugin",
+        "release-notes": "https://github.com/apache/maven-compiler-plugin/releases"
+    },
+    "maven-surefire-plugin.version": {
+        "test": true,
+        "groupId": "org.apache.maven.plugins",
+        "artifactId": "maven-surefire-plugin",
+        "release-notes": "https://github.com/apache/maven-surefire/releases"
+    },
+    "maven-gpg-plugin.version": {
+        "test": true,
+        "groupId": "org.apache.maven.plugins",
+        "artifactId": "maven-gpg-plugin",
+        "release-notes": "https://github.com/apache/maven-gpg-plugin/releases"
+    },
+    "maven-source-plugin.version": {
+        "test": true,
+        "groupId": "org.apache.maven.plugins",
+        "artifactId": "maven-source-plugin",
+        "release-notes": "https://github.com/apache/maven-source-plugin/releases"
+    },
+    "maven-javadoc-plugin.version": {
+        "test": true,
+        "groupId": "org.apache.maven.plugins",
+        "artifactId": "maven-javadoc-plugin",
+        "release-notes": "https://github.com/apache/maven-javadoc-plugin/releases"
+    },
+    "central-publishing-maven-plugin.version": {
+        "test": true,
+        "groupId": "org.sonatype.central",
+        "artifactId": "central-publishing-maven-plugin",
+        "release-notes": "https://central.sonatype.com/artifact/org.sonatype.central/central-publishing-maven-plugin"
+    },
+    "jackson.version": {
+        "groupId": "tools.jackson.core",
+        "artifactId": "jackson-core",
+        "release-notes": "https://github.com/FasterXML/jackson/wiki/Jackson-Releases"
+    },
+    "bouncycastle.version": {
+        "comment": "Crypt implementation",
+        "groupId": "org.bouncycastle",
+        "artifactId": "bcprov-jdk18on",
+        "release-notes": "https://www.bouncycastle.org/download/bouncy-castle-java/#release-notes"
+    },
+    "junit-jupiter.version": {
+        "test": true,
+        "comment": "Update to JUnit 6 is blocked by https://github.com/mockito/mockito/issues/3779",
+        "groupId": "org.junit.jupiter",
+        "artifactId": "junit-jupiter",
+        "release-notes": "https://github.com/junit-team/junit-framework/releases"
+    }
+}
