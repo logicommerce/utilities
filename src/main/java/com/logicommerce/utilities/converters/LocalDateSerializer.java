@@ -1,10 +1,10 @@
 package com.logicommerce.utilities.converters;
 
-import java.io.IOException;
 import java.time.LocalDate;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.SerializerProvider;
-import com.fasterxml.jackson.databind.ser.std.StdSerializer;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ser.std.StdSerializer;
 
 public class LocalDateSerializer extends StdSerializer<LocalDate> {
 
@@ -15,7 +15,7 @@ public class LocalDateSerializer extends StdSerializer<LocalDate> {
 	}
 
 	@Override
-	public void serialize(LocalDate value, JsonGenerator gen, SerializerProvider provider) throws IOException {
+	public void serialize(LocalDate value, JsonGenerator gen, SerializationContext ctxt) throws JacksonException {
 		gen.writeString(LocalDateUtil.toIsoLocalDate(value));
 	}
 }
