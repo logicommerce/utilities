@@ -1,7 +1,7 @@
 module com.logicommerce.utilities {
 	requires transitive java.logging;
-	requires transitive tools.jackson.core;
-	requires transitive tools.jackson.databind;
+	requires transitive com.fasterxml.jackson.core;
+	requires transitive com.fasterxml.jackson.databind;
 	requires transitive com.fasterxml.jackson.annotation;
 	requires transitive org.bouncycastle.provider;
 

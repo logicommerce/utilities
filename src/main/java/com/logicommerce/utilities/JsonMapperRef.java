@@ -1,9 +1,9 @@
 package com.logicommerce.utilities;
 
+import java.io.IOException;
 import java.io.InputStream;
-import tools.jackson.core.JacksonException;
-import tools.jackson.core.type.TypeReference;
-import tools.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonMapperRef<T> extends JsonMapperBase<T> {
 
@@ -20,7 +20,7 @@ public class JsonMapperRef<T> extends JsonMapperBase<T> {
 			try {
 				ObjectMapper mapper = mapperBuilder.build();
 				return mapper.readValue(jsonStream, typeReference);
-			} catch (JacksonException exception) {
+			} catch (IOException exception) {
 				throw new JsonConverterException(exception);
 			}
 		}
@@ -33,7 +33,7 @@ public class JsonMapperRef<T> extends JsonMapperBase<T> {
 			try {
 				ObjectMapper mapper = mapperBuilder.build();
 				return mapper.readValue(json, typeReference);
-			} catch (JacksonException exception) {
+			} catch (IOException exception) {
 				throw new JsonConverterException(exception);
 			}
 		}

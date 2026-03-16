@@ -2,12 +2,12 @@ package com.logicommerce.utilities;
 
 import java.io.InputStream;
 import java.util.List;
-import tools.jackson.core.JacksonException;
-import tools.jackson.databind.DeserializationFeature;
-import tools.jackson.databind.MapperFeature;
-import tools.jackson.databind.ObjectMapper;
-import tools.jackson.databind.SerializationFeature;
-import tools.jackson.databind.json.JsonMapper.Builder;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.json.JsonMapper.Builder;
 
 public abstract class JsonMapperBase<T> {
 
@@ -26,7 +26,7 @@ public abstract class JsonMapperBase<T> {
 			try {
 				ObjectMapper mapper = mapperBuilder.build();
 				return mapper.writeValueAsString(object);
-			} catch (JacksonException exception) {
+			} catch (JsonProcessingException exception) {
 				throw new JsonConverterException(exception);
 			}
 		}
@@ -38,7 +38,7 @@ public abstract class JsonMapperBase<T> {
 			try {
 				ObjectMapper mapper = mapperBuilder.build();
 				return mapper.writeValueAsString(list);
-			} catch (JacksonException exception) {
+			} catch (JsonProcessingException exception) {
 				throw new JsonConverterException(exception);
 			}
 		}
@@ -52,7 +52,7 @@ public abstract class JsonMapperBase<T> {
 			mapperBuilder.disable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
 		}
 	}
-
+	
 	public void setUnwrapRoot(boolean enable) {
 		if (enable) {
 			mapperBuilder.enable(DeserializationFeature.UNWRAP_ROOT_VALUE);
@@ -62,12 +62,12 @@ public abstract class JsonMapperBase<T> {
 	}
 
 	private void initMapper() {
-		mapperBuilder = tools.jackson.databind.json.JsonMapper.builder();
+		mapperBuilder = com.fasterxml.jackson.databind.json.JsonMapper.builder();
 		mapperBuilder.disable(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES);
 		mapperBuilder.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		mapperBuilder.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
 		mapperBuilder.addModule(DefaultModule.getDefaultModule());
 	}
-
+	
 }
-
+	
